@@ -6,7 +6,7 @@ from savings_account import SavingsAccount
 
 def main():
 
-    bank = Bank("Bank")
+    bank = Bank("The Bank")
 
     customer = Customer(
         1,
@@ -44,7 +44,7 @@ def main():
 
     while True:
 
-        print("\nCiti Menu")
+        print("\n", bank.getName(), "Menu")
         print("--------------------")
         print("1. View Accounts")
         print("2. Deposit")
@@ -107,7 +107,7 @@ def main():
 
         elif choice == "4":
 
-            print("Thank you for banking with Citi.")
+            print("Thank you for banking with ", bank.getName())
             break
 
         else:
