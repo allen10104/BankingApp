@@ -12,6 +12,3 @@ class Account(ABC):
     def get_id(self):
         return self.account_id
 
-    @abstractmethod
-    def add_interest(self):
-        pass
