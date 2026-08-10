@@ -21,5 +21,8 @@ class Bank:
 
         return None
 
+    def getName(self):
+        return self.name
+
     def get_customers(self):
         return self.customers
