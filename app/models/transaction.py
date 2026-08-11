@@ -1,18 +1,30 @@
-from datetime import datetime
+from datetime import datetime, timezone
+from typing import Annotated, Literal
 
-from pydantic import BaseModel
+from beanie import Document, Indexed, PydanticObjectId
+from pydantic import BaseModel, Field
 
 
 class TransferCreate(BaseModel):
-    from_account_id: int
-    to_account_id: int
+    from_account_id: PydanticObjectId
+    to_account_id: PydanticObjectId
     amount: float
 
 
-class Transaction(BaseModel):
-    id: int
-    transaction_type: str
-    from_account_id: int
-    to_account_id: int
+class Transaction(Document):
+    transaction_type: Literal["TRANSFER"] = "TRANSFER"
+
+    from_account_id: PydanticObjectId
+    to_account_id: PydanticObjectId
+
     amount: float
-    created_at: datetime
+
+    created_at: Annotated[
+        datetime,
+        Indexed()
+    ] = Field(
+        default_factory=lambda: datetime.now(timezone.utc)
+    )
+
+    class Settings:
+        name = "transactions"
