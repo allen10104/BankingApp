@@ -1,10 +1,10 @@
 from app.repositories.account_repository import AccountRepository
-from app.repositories.customer_repository import CustomerRepository
 from app.repositories.transaction_repository import TransactionRepository
+from app.repositories.customer_repository import CustomerRepository
 
 from app.services.account_service import AccountService
-from app.services.customer_service import CustomerService
 from app.services.transaction_service import TransactionService
+from app.services.customer_service import CustomerService
 
 
 customer_repository = CustomerRepository()
