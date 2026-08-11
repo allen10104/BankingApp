@@ -35,7 +35,7 @@ class CustomerRepository:
         return None
 
     def create_customer(self, customer_data: CustomerCreateAndUpdate):
-        new_id = len(self.customers) + 1
+        new_id = max(customer.id for customer in self.customers) + 1
 
         new_customer = Customer(
             id = new_id,
