@@ -1,4 +1,6 @@
-from fastapi import APIRouter, HTTPException
+from datetime import date
+
+from fastapi import APIRouter, HTTPException, Query
 from starlette import status
 
 from app.dependencies import transaction_service
@@ -34,3 +36,22 @@ def transfer_money(transfer_data: TransferCreate):
         )
 
     return result
+
+
+@router.get(
+    "",
+    response_model=list[Transaction],
+    status_code=status.HTTP_200_OK
+)
+def get_transactions(
+    start_date: date | None = None,
+    transaction_type: str | None = Query(
+        default=None,
+        alias="type"
+    )
+):
+
+    return transaction_service.get_transactions(
+        start_date,
+        transaction_type
+    )

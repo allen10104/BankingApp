@@ -34,3 +34,14 @@ class TransactionService:
             to_account.id,
             transfer_data.amount
         )
+
+    def get_transactions(
+        self,
+        start_date=None,
+        transaction_type=None
+    ):
+
+        return self.transaction_repository.get_transactions(
+            start_date,
+            transaction_type
+        )

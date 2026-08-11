@@ -15,13 +15,7 @@ class TransactionRepository:
         amount: float
     ):
 
-        if len(self.transactions) == 0:
-            new_id = 1
-        else:
-            new_id = max(
-                transaction.id
-                for transaction in self.transactions
-            ) + 1
+        new_id = len(self.transactions) + 1
 
         transaction = Transaction(
             id=new_id,
@@ -35,3 +29,27 @@ class TransactionRepository:
         self.transactions.append(transaction)
 
         return transaction
+
+    def get_transactions(
+        self,
+        start_date=None,
+        transaction_type=None
+    ):
+
+        filtered_transactions = []
+
+        for transaction in self.transactions:
+
+            if start_date is not None:
+
+                if transaction.created_at.date() < start_date:
+                    continue
+
+            if transaction_type is not None:
+
+                if transaction.transaction_type != transaction_type.upper():
+                    continue
+
+            filtered_transactions.append(transaction)
+
+        return filtered_transactions

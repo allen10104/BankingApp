@@ -27,3 +27,19 @@ def create_account(account_data: AccountCreate):
         )
 
     return account
+
+
+@router.get(
+    "",
+    response_model=list[Account],
+    status_code=status.HTTP_200_OK
+)
+def get_accounts(
+    branch_id: int | None = None,
+    min_balance: float | None = None
+):
+
+    return account_service.get_accounts(
+        branch_id,
+        min_balance
+    )

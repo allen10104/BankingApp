@@ -14,3 +14,10 @@ class AccountService:
             return None
 
         return self.account_repository.create_account(account_data)
+
+    def get_accounts(self, branch_id=None, min_balance=None):
+
+        return self.account_repository.get_accounts(
+            branch_id,
+            min_balance
+        )
