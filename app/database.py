@@ -20,15 +20,11 @@ async def init_database():
 
     global mongo_client
 
-    mongo_client = AsyncMongoClient(
-        os.environ["MONGODB_URL"]
-    )
+    mongo_client = AsyncMongoClient(os.environ["MONGODB_URL"])
 
     await mongo_client.admin.command("ping")
 
-    database = mongo_client[
-        os.getenv("MONGODB_DB", "citi_bank")
-    ]
+    database = mongo_client[os.getenv("MONGODB_DB", "BankApp")]
 
     await init_beanie(
         database=database,

@@ -1,71 +1,38 @@
+from beanie import PydanticObjectId
 from app.models.account import Account, AccountCreate
 
 
 class AccountRepository:
+    async def get_account_by_id(self, account_id: PydanticObjectId):
+        return await Account.get(account_id)
 
-    def __init__(self):
-        self.accounts = [
-            Account(
-                id=1,
-                customer_id=1,
-                account_type="CHECKING",
-                branch_id=123,
-                balance=1500.00
-            ),
-            Account(
-                id=2,
-                customer_id=2,
-                account_type="SAVINGS",
-                branch_id=123,
-                balance=2500.00
-            ),
-            Account(
-                id=3,
-                customer_id=3,
-                account_type="CHECKING",
-                branch_id=456,
-                balance=500.00
-            )
-        ]
 
-    def get_account_by_id(self, account_id: int):
-
-        for account in self.accounts:
-            if account.id == account_id:
-                return account
-
-        return None
-
-    def create_account(self, account_data: AccountCreate):
-
-        new_id = len(self.accounts) + 1
-
-        new_account = Account(
-            id=new_id,
+    async def create_account(self, account_data: AccountCreate, account_number: str):
+        account = Account(
             customer_id=account_data.customer_id,
+            account_number=account_number,
             account_type=account_data.account_type,
             branch_id=account_data.branch_id,
-            balance=0
+            balance=0.0
         )
 
-        self.accounts.append(new_account)
+        await account.insert()
+        return account
 
-        return new_account
 
-    def get_accounts(self, branch_id=None, min_balance=None):
+    async def get_accounts(self, branch_id=None, min_balance=None):
+        filters = {}
+        if branch_id is not None:
+            filters["branch_id"] = branch_id
 
-        filtered_accounts = []
+        if min_balance is not None:
+            filters["balance"] = {
+                "$gte": min_balance
+            }
 
-        for account in self.accounts:
+        return await Account.find(filters).to_list()
 
-            if branch_id is not None:
-                if account.branch_id != branch_id:
-                    continue
 
-            if min_balance is not None:
-                if account.balance < min_balance:
-                    continue
-
-            filtered_accounts.append(account)
-
-        return filtered_accounts
+    async def save_account(self, account):
+        await account.save()
+        return account
