@@ -1,3 +1,4 @@
+from app.models.customer import Customer, CustomerCreateAndUpdate
 from app.repositories.customer_repository import CustomerRepository
 
 
@@ -9,5 +10,14 @@ class CustomerService:
     def get_all_customers(self):
         return self.customer_repository.get_all_customers()
 
-    def get_customer_by_id(self, customer_id):
+    def get_customer_by_id(self, customer_id: int):
         return self.customer_repository.get_customer_by_id(customer_id)
+
+    def create_customer(self, customer_data: CustomerCreateAndUpdate):
+        return self.customer_repository.create_customer(customer_data)
+
+    def update_customer(self, customer_id, customer_data: CustomerCreateAndUpdate):
+        return self.customer_repository.update_customer(customer_id, customer_data)
+
+    def delete_customer(self, customer_id: int):
+        return self.customer_repository.delete_customer(customer_id)
