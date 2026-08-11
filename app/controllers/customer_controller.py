@@ -1,19 +1,12 @@
 from fastapi import APIRouter, HTTPException
-from starlette import status
 
+from app.dependencies import customer_service
 from app.models.customer import Customer, CustomerCreateAndUpdate
-from app.repositories.customer_repository import CustomerRepository
-from app.services.customer_service import CustomerService
-
 
 router = APIRouter(
     prefix="/api/v1/customers",
     tags=["Customers"]
 )
-
-customer_repository = CustomerRepository()
-customer_service = CustomerService(customer_repository)
-
 
 @router.get("", response_model=list[Customer])
 def get_customers():
