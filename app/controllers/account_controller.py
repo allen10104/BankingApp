@@ -11,14 +11,9 @@ router = APIRouter(
 )
 
 
-@router.post(
-    "",
-    response_model=Account,
-    status_code=status.HTTP_201_CREATED
-)
-def create_account(account_data: AccountCreate):
-
-    account = account_service.create_account(account_data)
+@router.post("", response_model=Account, status_code=status.HTTP_201_CREATED)
+async def create_account(account_data: AccountCreate):
+    account = await account_service.create_account(account_data)
 
     if account is None:
         raise HTTPException(
@@ -29,17 +24,13 @@ def create_account(account_data: AccountCreate):
     return account
 
 
-@router.get(
-    "",
-    response_model=list[Account],
-    status_code=status.HTTP_200_OK
-)
-def get_accounts(
+@router.get("", response_model=list[Account])
+async def get_accounts(
     branch_id: int | None = None,
     min_balance: float | None = None
 ):
 
-    return account_service.get_accounts(
+    return await account_service.get_accounts(
         branch_id,
         min_balance
     )
