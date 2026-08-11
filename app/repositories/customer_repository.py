@@ -1,65 +1,50 @@
-from app.models.customer import Customer, CustomerCreateAndUpdate
+from beanie import PydanticObjectId
+
+from app.models.customer import (
+    Customer,
+    CustomerCreateAndUpdate
+)
 
 
 class CustomerRepository:
+    async def get_all_customers(self):
+        return await Customer.find_all().to_list()
 
-    def __init__(self):
-        self.customers = [
-            Customer(
-                id=1,
-                name="John",
-                username="john"
-            ),
-            Customer(
-                id=2,
-                name="Sarah",
-                username="sarah"
-            ),
-            Customer(
-                id=3,
-                name="Mike",
-                username="mike"
-            )
-        ]
 
-    def get_all_customers(self):
-        return self.customers
+    async def get_customer_by_id(self, customer_id: PydanticObjectId):
+        return await Customer.get(customer_id)
 
-    def get_customer_by_id(self, customer_id: int):
 
-        for customer in self.customers:
-
-            if customer.id == customer_id:
-                return customer
-
-        return None
-
-    def create_customer(self, customer_data: CustomerCreateAndUpdate):
-        new_id = max(customer.id for customer in self.customers) + 1
-
-        new_customer = Customer(
-            id = new_id,
-            name = customer_data.name,
-            username = customer_data.username
+    async def create_customer(self, customer_data: CustomerCreateAndUpdate):
+        customer = Customer(
+            name=customer_data.name,
+            username=customer_data.username
         )
 
-        self.customers.append(new_customer)
-        return new_customer
+        await customer.insert()
+        return customer
 
-    def delete_customer(self, customer_id: int):
-        for customer in self.customers:
-            if customer.id == customer_id:
-                self.customers.remove(customer)
-                return customer
 
-        return None
+    async def update_customer(self, customer_id: PydanticObjectId,customer_data: CustomerCreateAndUpdate):
+        customer = await Customer.get(customer_id)
 
-    def update_customer(self, customer_id: int, customer_data: CustomerCreateAndUpdate):
+        if customer is None:
+            return None
 
-        for customer in self.customers:
-            if customer.id == customer_id:
-                customer.name = customer_data.name
-                customer.username = customer_data.username
-                return customer
+        customer.name = customer_data.name
+        customer.username = customer_data.username
 
-        return None
+        await customer.save()
+
+        return customer
+
+
+    async def delete_customer(self,customer_id: PydanticObjectId):
+        customer = await Customer.get(customer_id)
+
+        if customer is None:
+            return None
+
+        await customer.delete()
+
+        return customer
