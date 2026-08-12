@@ -1,4 +1,7 @@
-import type {Customer} from "../types/customer"
+import type {
+    Customer,
+    CustomerCreate
+} from "../types/customer"
 
 
 const API_BASE_URL =
@@ -7,7 +10,6 @@ const API_BASE_URL =
 
 
 export async function fetchCustomers(): Promise<Customer[]> {
-
     const response = await fetch(
         `${API_BASE_URL}/customers`
     )
@@ -15,6 +17,30 @@ export async function fetchCustomers(): Promise<Customer[]> {
     if (!response.ok) {
         throw new Error(
             `Failed to fetch customers (${response.status})`
+        )
+    }
+
+    return await response.json()
+}
+
+
+export async function createCustomer(customerData: CustomerCreate): Promise<Customer> {
+    const response = await fetch(
+        `${API_BASE_URL}/customers`,
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(customerData)
+        }
+    )
+
+    if (!response.ok) {
+        throw new Error(
+            `Failed to create account (${response.status})`
         )
     }
 

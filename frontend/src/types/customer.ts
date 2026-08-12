@@ -3,3 +3,8 @@ export interface Customer {
     name: string
     username: string
 }
+
+export interface CustomerCreate {
+    name: string
+    username: string
+}

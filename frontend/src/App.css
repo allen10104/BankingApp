@@ -1,56 +1,163 @@
 #root {
-    width: 100%;
-}
-
-.page {
     min-height: 100vh;
-    background-color: #f5f7fa;
 }
 
-.hero {
-    background-color: #056dae;
+
+.home-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f6f8;
+}
+
+
+.home-card {
+    width: 500px;
+    padding: 48px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    text-align: center;
+}
+
+
+.home-card h1 {
+    margin-top: 0;
+    font-size: 42px;
+    color: #111827;
+}
+
+
+.home-card p {
+    margin-bottom: 32px;
+    color: #6b7280;
+}
+
+
+.home-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+
+.primary-button,
+.secondary-button {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.primary-button {
+    border: none;
+    background-color: #0066a1;
     color: white;
-    padding: 32px 48px;
 }
 
-.hero h1 {
-    margin: 0;
-    font-size: 32px;
+
+.secondary-button {
+    border: 1px solid #0066a1;
+    background-color: white;
+    color: #0066a1;
 }
 
-.hero p {
-    margin-top: 8px;
-    margin-bottom: 0;
+
+.primary-button:hover {
+    background-color: #004f7d;
 }
 
-.customer-section {
+
+.secondary-button:hover {
+    background-color: #f0f7fb;
+}
+
+
+.form-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f6f8;
+}
+
+
+.form-card {
+    width: 420px;
+    padding: 36px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+
+.form-card h1 {
+    margin-top: 0;
+    color: #111827;
+}
+
+
+.form-card form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form-card label {
+    margin-top: 16px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+
+.form-card input {
+    padding: 11px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+
+.form-card button {
+    margin-top: 24px;
+}
+
+
+.form-footer {
+    margin-top: 24px;
+    text-align: center;
+}
+
+
+.error-message {
+    color: #b91c1c;
+}
+
+
+.page-content {
     max-width: 1000px;
-    margin: 0 auto;
+    margin: auto;
     padding: 40px;
 }
 
-.customer-section h2 {
-    color: #222;
-}
 
 .customer-list {
     display: grid;
     gap: 16px;
 }
 
+
 .customer-card {
+    padding: 24px;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
 }
 
-.customer-card h3 {
-    margin-top: 0;
-    color: #056dae;
-}
 
-.customer-id {
-    color: #777;
-    font-size: 14px;
+.customer-card h2 {
+    color: #0066a1;
 }
