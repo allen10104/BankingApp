@@ -4,7 +4,10 @@ from fastapi import APIRouter, HTTPException, Query
 from starlette import status
 
 from app.dependencies import transaction_service
-from app.models.transaction import Transaction, TransferCreate
+from app.models.transaction import (
+    Transaction,
+    TransferCreate
+)
 
 
 router = APIRouter(
@@ -18,9 +21,9 @@ router = APIRouter(
     response_model=Transaction,
     status_code=status.HTTP_200_OK
 )
-def transfer_money(transfer_data: TransferCreate):
+async def transfer_money(transfer_data: TransferCreate):
 
-    result = transaction_service.transfer(transfer_data)
+    result = await transaction_service.transfer(transfer_data)
 
     if isinstance(result, str):
 
@@ -38,12 +41,8 @@ def transfer_money(transfer_data: TransferCreate):
     return result
 
 
-@router.get(
-    "",
-    response_model=list[Transaction],
-    status_code=status.HTTP_200_OK
-)
-def get_transactions(
+@router.get("", response_model=list[Transaction])
+async def get_transactions(
     start_date: date | None = None,
     transaction_type: str | None = Query(
         default=None,
@@ -51,7 +50,4 @@ def get_transactions(
     )
 ):
 
-    return transaction_service.get_transactions(
-        start_date,
-        transaction_type
-    )
+    return await transaction_service.get_transactions(start_date, transaction_type)
