@@ -9,12 +9,12 @@ from app.models.customer import (Customer, CustomerCreateAndUpdate)
 router = APIRouter(prefix="/api/v1/customers", tags=["Customers"])
 
 
-@router.get("", response_model=list[Customer])
+@router.get("", response_model=list[Customer], response_model_by_alias=False)
 async def get_customers():
     return await customer_service.get_all_customers()
 
 
-@router.get("/{customer_id}", response_model=Customer)
+@router.get("/{customer_id}", response_model=Customer,  response_model_by_alias=False)
 async def get_customer(customer_id: PydanticObjectId):
     customer = await customer_service.get_customer_by_id(customer_id)
 
