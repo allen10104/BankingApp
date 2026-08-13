@@ -1,31 +1,87 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router"
+import {
+    useCallback,
+    useEffect,
+    useState
+} from "react"
 
-import { getCurrentCustomer } from "../services/authService"
-import { fetchAccounts } from "../services/accountService"
-import { fetchTransactions } from "../services/transactionService"
-import { clearToken } from "../services/sessionService"
+import {
+    useNavigate
+} from "react-router"
 
-import type { Customer } from "../types/customer"
-import type { Account } from "../types/account"
-import type { Transaction } from "../types/transaction"
 
+import DashboardSidebar
+    from "../components/dashboard/DashboardSidebar"
+
+import DashboardHeader
+    from "../components/dashboard/DashboardHeader"
+
+import BalanceSummary
+    from "../components/dashboard/BalanceSummary"
+
+import AccountsPanel
+    from "../components/dashboard/AccountsPanel"
+
+import TransactionsPanel
+    from "../components/dashboard/TransactionsPanel"
+
+import QuickTransfer
+    from "../components/dashboard/QuickTransfer"
+
+
+import {
+    getCurrentCustomer
+} from "../services/authService"
+
+import {
+    fetchAccounts
+} from "../services/accountService"
+
+import {
+    fetchTransactions
+} from "../services/transactionService"
+
+import {
+    clearToken
+} from "../services/sessionService"
+
+
+import type {
+    Customer
+} from "../types/customer"
+
+import type {
+    Account
+} from "../types/account"
+
+import type {
+    Transaction
+} from "../types/transaction"
+
+import "./DashboardPage.css"
 
 function DashboardPage() {
 
     const navigate = useNavigate()
 
-    const [customer, setCustomer] = useState<Customer | null>(null)
-    const [accounts, setAccounts] = useState<Account[]>([])
-    const [transactions, setTransactions] = useState<Transaction[]>([])
 
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
+    const [customer, setCustomer] =
+        useState<Customer | null>(null)
+
+    const [accounts, setAccounts] =
+        useState<Account[]>([])
+
+    const [transactions, setTransactions] =
+        useState<Transaction[]>([])
+
+    const [loading, setLoading] =
+        useState(true)
+
+    const [error, setError] =
+        useState<string | null>(null)
 
 
-    useEffect(() => {
-
-        async function loadDashboard() {
+    const loadDashboard = useCallback(
+        async () => {
 
             try {
 
@@ -39,26 +95,50 @@ function DashboardPage() {
                     fetchTransactions()
                 ])
 
-                setCustomer(customerData)
-                setAccounts(accountData)
-                setTransactions(transactionData)
+
+                setCustomer(
+                    customerData
+                )
+
+                setAccounts(
+                    accountData
+                )
+
+                setTransactions(
+                    transactionData
+                )
 
             } catch (error) {
 
                 if (error instanceof Error) {
-                    setError(error.message)
+
+                    setError(
+                        error.message
+                    )
+
                 } else {
-                    setError("Unable to load dashboard")
+
+                    setError(
+                        "Unable to load dashboard"
+                    )
                 }
 
             } finally {
+
                 setLoading(false)
+
             }
-        }
+
+        },
+        []
+    )
+
+
+    useEffect(() => {
 
         void loadDashboard()
 
-    }, [])
+    }, [loadDashboard])
 
 
     function handleLogout() {
@@ -69,37 +149,12 @@ function DashboardPage() {
     }
 
 
-    function getAccountName(accountId: string) {
-
-        const account = accounts.find(
-            account => account.id === accountId
-        )
-
-        if (account === undefined) {
-            return "Account"
-        }
-
-        const accountType =
-            account.account_type === "CHECKING"
-                ? "Checking"
-                : "Savings"
-
-        return `${accountType} •••• ${account.account_number.slice(-4)}`
-    }
-
-
-    const totalBalance = accounts.reduce(
-        (total, account) => total + account.balance,
-        0
-    )
-
-
     if (loading) {
 
         return (
-            <main className="dashboard-message">
-                <p>Loading dashboard...</p>
-            </main>
+            <div className="dashboard-loading">
+                Loading dashboard...
+            </div>
         )
     }
 
@@ -107,255 +162,82 @@ function DashboardPage() {
     if (error) {
 
         return (
-            <main className="dashboard-message">
+            <div className="dashboard-loading">
+
                 <p className="error-message">
                     {error}
                 </p>
-            </main>
+
+            </div>
         )
     }
 
 
+    if (customer === null) {
+
+        return null
+
+    }
+
+
     return (
-        <div className="dashboard-layout">
+        <div className="dashboard-background">
 
-            <aside className="dashboard-sidebar">
-
-                <h2>The Bank</h2>
-
-                <nav>
-                    <p className="sidebar-active">
-                        Dashboard
-                    </p>
-
-                    <p>
-                        Accounts
-                    </p>
-
-                    <p>
-                        Transactions
-                    </p>
-
-                    <p>
-                        Transfer
-                    </p>
-                </nav>
-
-                <button
-                    className="logout-button"
-                    onClick={handleLogout}
-                >
-                    Log Out
-                </button>
-
-            </aside>
+            <div className="dashboard-shell">
 
 
-            <main className="dashboard-main">
-
-                <header className="dashboard-header">
-
-                    <div>
-                        <p>Welcome back,</p>
-
-                        <h1>
-                            {customer?.name}
-                        </h1>
-                    </div>
-
-                    <div className="customer-avatar">
-                        {customer?.name
-                            .charAt(0)
-                            .toUpperCase()}
-                    </div>
-
-                </header>
+                <DashboardSidebar
+                    onLogout={handleLogout}
+                />
 
 
-                <section className="total-balance-card">
+                <main className="dashboard-content">
 
-                    <p>Total Balance</p>
 
-                    <h2>
-                        ${totalBalance.toLocaleString(
-                            "en-US",
-                            {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2
+                    <DashboardHeader
+                        customer={customer}
+                    />
+
+
+                    <BalanceSummary
+                        accounts={accounts}
+                    />
+
+
+                    <div className="dashboard-grid">
+
+                        <div className="dashboard-left-column">
+
+
+                            <AccountsPanel
+                                accounts={accounts}
+                            />
+
+
+                            <QuickTransfer
+                                accounts={accounts}
+                                onTransferComplete={
+                                    loadDashboard
+                                }
+                            />
+
+
+                        </div>
+
+
+                        <TransactionsPanel
+                            accounts={accounts}
+                            transactions={
+                                transactions
                             }
-                        )}
-                    </h2>
+                        />
 
-                    <span>
-                        Across {accounts.length}{" "}
-                        {accounts.length === 1
-                            ? "account"
-                            : "accounts"}
-                    </span>
 
-                </section>
+                    </div>
 
+                </main>
 
-                <section className="dashboard-section">
-
-                    <h2>Your Accounts</h2>
-
-                    {accounts.length === 0 ? (
-
-                        <div className="empty-state">
-
-                            <h3>No accounts yet</h3>
-
-                            <p>
-                                You do not currently have a
-                                checking or savings account.
-                            </p>
-
-                        </div>
-
-                    ) : (
-
-                        <div className="account-grid">
-
-                            {accounts.map(account => (
-
-                                <article
-                                    className="account-card"
-                                    key={account.id}
-                                >
-
-                                    <div className="account-card-header">
-
-                                        <h3>
-                                            {account.account_type ===
-                                            "CHECKING"
-                                                ? "Checking"
-                                                : "Savings"}
-                                        </h3>
-
-                                        <span>
-                                            •••
-                                        </span>
-
-                                    </div>
-
-
-                                    <p className="account-number">
-                                        ••••{" "}
-                                        {account.account_number.slice(-4)}
-                                    </p>
-
-
-                                    <p className="balance-label">
-                                        Available Balance
-                                    </p>
-
-
-                                    <strong className="account-balance">
-
-                                        ${account.balance.toLocaleString(
-                                            "en-US",
-                                            {
-                                                minimumFractionDigits: 2,
-                                                maximumFractionDigits: 2
-                                            }
-                                        )}
-
-                                    </strong>
-
-                                </article>
-
-                            ))}
-
-                        </div>
-
-                    )}
-
-                </section>
-
-
-                <section className="dashboard-section">
-
-                    <h2>Recent Transactions</h2>
-
-                    {transactions.length === 0 ? (
-
-                        <div className="empty-state">
-
-                            <h3>No transactions yet</h3>
-
-                            <p>
-                                Your recent activity will
-                                appear here.
-                            </p>
-
-                        </div>
-
-                    ) : (
-
-                        <div className="transaction-list">
-
-                            {transactions
-                                .slice(0, 10)
-                                .map(transaction => (
-
-                                    <div
-                                        className="transaction-row"
-                                        key={transaction.id}
-                                    >
-
-                                        <div className="transaction-icon">
-                                            ↔
-                                        </div>
-
-
-                                        <div className="transaction-details">
-
-                                            <strong>
-                                                Transfer
-                                            </strong>
-
-                                            <span>
-                                                {getAccountName(
-                                                    transaction.from_account_id
-                                                )}
-
-                                                {" → "}
-
-                                                {getAccountName(
-                                                    transaction.to_account_id
-                                                )}
-                                            </span>
-
-                                        </div>
-
-
-                                        <div className="transaction-date">
-
-                                            {new Date(
-                                                transaction.created_at
-                                            ).toLocaleDateString()}
-
-                                        </div>
-
-
-                                        <strong className="transaction-amount">
-
-                                            ${transaction.amount.toFixed(2)}
-
-                                        </strong>
-
-                                    </div>
-
-                                ))}
-
-                        </div>
-
-                    )}
-
-                </section>
-
-            </main>
+            </div>
 
         </div>
     )

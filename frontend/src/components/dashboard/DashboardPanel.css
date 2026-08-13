@@ -1,0 +1,52 @@
+.dashboard-panel {
+    padding: 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #ececef;
+    border-radius: 5px;
+}
+
+
+.panel-heading {
+    margin-bottom: 18px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.panel-heading h2 {
+    margin: 0;
+
+    font-size: 18px;
+}
+
+
+.panel-heading span {
+    color: #888891;
+
+    font-size: 12px;
+}
+
+
+.dashboard-empty {
+    padding: 30px 15px;
+
+    text-align: center;
+
+    color: #777781;
+}
+
+
+.dashboard-empty strong {
+    color: #33333a;
+}
+
+
+.dashboard-empty p {
+    margin-bottom: 0;
+
+    font-size: 13px;
+}

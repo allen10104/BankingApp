@@ -1,0 +1,93 @@
+.dashboard-sidebar {
+    padding: 36px 26px;
+
+    background: #f7f7f8;
+    border-right: 1px solid #ededf0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.dashboard-logo {
+    margin: 0 0 42px;
+
+    font-size: 23px;
+    color: #1e1e24;
+}
+
+
+.dashboard-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.dashboard-nav-link {
+    padding: 13px 14px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    border-radius: 8px;
+
+    color: #686871;
+
+    font-size: 14px;
+    text-decoration: none;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+
+.dashboard-nav-link:hover {
+    background: #ebebef;
+    color: #1f1f25;
+}
+
+
+.dashboard-nav-link.active {
+    background: #eceaf8;
+    color: #19191f;
+
+    font-weight: 700;
+}
+
+
+.dashboard-logout {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #686871;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+.dashboard-logout:hover {
+    background: #ebebef;
+}
+
+
+@media (max-width: 700px) {
+
+    .dashboard-sidebar {
+        display: none;
+    }
+}

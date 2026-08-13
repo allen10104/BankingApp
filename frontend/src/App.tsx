@@ -7,7 +7,6 @@ import LoginPage from "./pages/LoginPage"
 
 import ProtectedRoute from "./components/ProtectedRoute"
 
-import "./App.css"
 
 function App() {
     return (

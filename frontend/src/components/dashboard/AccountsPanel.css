@@ -1,0 +1,62 @@
+.dashboard-account-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(210px, 1fr)
+        );
+
+    gap: 14px;
+}
+
+
+.dashboard-account-card {
+    padding: 20px;
+
+    border-radius: 5px;
+
+    background: #f4f1ff;
+}
+
+
+.dashboard-account-card:nth-child(even) {
+    background: #fff0e9;
+}
+
+
+.account-top-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.account-type-badge {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.dashboard-account-number {
+    margin: 10px 0 26px;
+
+    color: #74747d;
+
+    font-size: 12px;
+}
+
+
+.account-balance-label {
+    color: #74747d;
+
+    font-size: 11px;
+}
+
+
+.dashboard-account-balance {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 22px;
+}

@@ -1,0 +1,51 @@
+.dashboard-topbar {
+    margin-bottom: 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.dashboard-small-text {
+    margin: 0;
+
+    color: #85858d;
+
+    font-size: 13px;
+}
+
+
+.dashboard-topbar h1 {
+    margin: 4px 0 0;
+
+    font-size: 27px;
+    color: #1e1e24;
+}
+
+
+.dashboard-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.dashboard-avatar {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #c8b7f2;
+    color: #282331;
+
+    font-weight: 800;
+}
