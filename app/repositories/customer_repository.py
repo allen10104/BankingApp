@@ -1,9 +1,5 @@
 from beanie import PydanticObjectId
-
-from app.models.customer import (
-    Customer,
-    CustomerCreateAndUpdate
-)
+from app.models.customer import Customer
 
 
 class CustomerRepository:
@@ -15,17 +11,24 @@ class CustomerRepository:
         return await Customer.get(customer_id)
 
 
-    async def create_customer(self, customer_data: CustomerCreateAndUpdate):
+    async def get_customer_by_username(self, username: str):
+        return await Customer.find_one(
+            Customer.username == username
+        )
+
+
+    async def create_customer(self, name: str, username: str, password_hash: str):
         customer = Customer(
-            name=customer_data.name,
-            username=customer_data.username
+            name=name,
+            username=username,
+            password_hash=password_hash
         )
 
         await customer.insert()
         return customer
 
 
-    async def update_customer(self, customer_id: PydanticObjectId,customer_data: CustomerCreateAndUpdate):
+    async def update_customer(self, customer_id, customer_data):
         customer = await Customer.get(customer_id)
 
         if customer is None:
@@ -39,7 +42,8 @@ class CustomerRepository:
         return customer
 
 
-    async def delete_customer(self,customer_id: PydanticObjectId):
+    async def delete_customer(self, customer_id):
+
         customer = await Customer.get(customer_id)
 
         if customer is None:

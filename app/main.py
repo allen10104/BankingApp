@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.controllers.account_controller import router as account_router
 from app.controllers.customer_controller import router as customer_router
+from app.controllers.auth_controller import router as auth_router
 from app.controllers.transaction_controller import router as transaction_router
 from app.database import close_database, init_database
 
@@ -40,3 +41,4 @@ app.add_middleware(
 app.include_router(customer_router)
 app.include_router(account_router)
 app.include_router(transaction_router)
+app.include_router(auth_router)
