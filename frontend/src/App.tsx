@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router"
 
 import CreateAccountPage from "./pages/CreateAccountPage"
-import CustomersPage from "./pages/CustomersPage"
+import DashboardPage from "./pages/DashboardPage"
 import HomePage from "./pages/HomePage"
 import LoginPage from "./pages/LoginPage"
 
+import ProtectedRoute from "./components/ProtectedRoute"
+
 import "./App.css"
 
-
 function App() {
-
     return (
         <Routes>
 
@@ -29,8 +29,12 @@ function App() {
             />
 
             <Route
-                path="/customers"
-                element={<CustomersPage />}
+                path="/dashboard"
+                element={
+                    <ProtectedRoute>
+                        <DashboardPage />
+                    </ProtectedRoute>
+                }
             />
 
         </Routes>

@@ -1,11 +1,6 @@
-const API_BASE_URL =
-    import.meta.env.VITE_API_BASE_URL ??
-    "http://127.0.0.1:8000/api/v1"
+import type { Customer } from "../types/customer"
 
-
-const LOGIN_PATH =
-    import.meta.env.VITE_LOGIN_PATH ??
-    "/login"
+import {apiUrl, authenticatedFetch} from "./api"
 
 
 export interface LoginRequest {
@@ -14,12 +9,15 @@ export interface LoginRequest {
 }
 
 
-export async function login(
-    loginData: LoginRequest
-) {
+export interface TokenResponse {
+    access_token: string
+    token_type: string
+}
 
+
+export async function login(loginData: LoginRequest): Promise<TokenResponse> {
     const response = await fetch(
-        `${API_BASE_URL}${LOGIN_PATH}`,
+        apiUrl("/auth/login"),
         {
             method: "POST",
 
@@ -27,17 +25,32 @@ export async function login(
                 "Content-Type": "application/json"
             },
 
-            body: JSON.stringify(loginData)
+            body: JSON.stringify(
+                loginData
+            )
         }
     )
 
-
     if (!response.ok) {
         throw new Error(
-            `Login failed (${response.status})`
+            "Incorrect username or password"
         )
     }
 
+    return await response.json()
+}
+
+
+export async function getCurrentCustomer(): Promise<Customer> {
+    const response = await authenticatedFetch(
+        "/auth/me"
+    )
+
+    if (!response.ok) {
+        throw new Error(
+            "Session expired"
+        )
+    }
 
     return await response.json()
 }

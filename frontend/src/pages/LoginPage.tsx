@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router"
-
+import { saveToken } from "../services/sessionService"
 import { login } from "../services/authService"
 
 
@@ -25,12 +25,13 @@ function LoginPage() {
 
         try {
 
-            await login({
-                username: username,
-                password: password
-            })
+        const result = await login({
+            username: username,
+            password: password
+        })
 
-            navigate("/customers")
+        saveToken(result.access_token)
+        navigate("/dashboard")
 
         } catch (error) {
 
@@ -41,7 +42,6 @@ function LoginPage() {
             }
 
         } finally {
-
             setLoading(false)
         }
     }

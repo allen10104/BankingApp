@@ -12,7 +12,7 @@ function CreateAccountPage() {
     const [username, setUsername] = useState("")
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
-
+    const [password, setPassword] = useState("")
 
     async function handleSubmit(
         event: React.FormEvent<HTMLFormElement>
@@ -27,10 +27,11 @@ function CreateAccountPage() {
 
             await createCustomer({
                 name: name,
-                username: username
+                username: username,
+                password: password
             })
 
-            navigate("/customers")
+            navigate("/login")
 
         } catch (error) {
 
@@ -89,13 +90,25 @@ function CreateAccountPage() {
                         required
                     />
 
+                    <label htmlFor="password">
+                        Password
+                    </label>
+
+                    <input
+                        id="password"
+                        type="password"
+                        value={password}
+                        onChange={(event) =>
+                            setPassword(event.target.value)
+                        }
+                        required
+                    />
 
                     {error && (
                         <p className="error-message">
                             {error}
                         </p>
                     )}
-
 
                     <button
                         className="primary-button"
