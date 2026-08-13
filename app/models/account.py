@@ -6,7 +6,6 @@ from pydantic import BaseModel
 
 
 class AccountCreate(BaseModel):
-    customer_id: PydanticObjectId
     account_type: Literal["CHECKING", "SAVINGS"]
     branch_id: int
 

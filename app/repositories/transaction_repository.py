@@ -14,9 +14,25 @@ class TransactionRepository:
         await transaction.insert()
         return transaction
 
+    async def get_transactions(self, account_ids, start_date=None, transaction_type=None):
+        if len(account_ids) == 0:
+            return []
 
-    async def get_transactions(self, start_date=None, transaction_type=None):
-        filters = {}
+        filters = {
+            "$or": [
+                {
+                    "from_account_id": {
+                        "$in": account_ids
+                    }
+                },
+                {
+                    "to_account_id": {
+                        "$in": account_ids
+                    }
+                }
+            ]
+        }
+
         if start_date is not None:
             start_datetime = datetime.combine(
                 start_date,
@@ -29,4 +45,4 @@ class TransactionRepository:
         if transaction_type is not None:
             filters["transaction_type"] = (transaction_type.upper())
 
-        return await Transaction.find(filters).to_list()
+        return await Transaction.find(filters).sort("-created_at").to_list()
