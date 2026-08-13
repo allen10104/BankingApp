@@ -1,10 +1,9 @@
 from beanie import PydanticObjectId
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from starlette import status
 
-from app.dependencies import customer_service
-from app.models.customer import (CustomerCreate, CustomerUpdate, CustomerResponse)
-
+from app.dependencies import customer_service, people_service, get_current_customer
+from app.models.customer import (CustomerCreate, CustomerUpdate, CustomerResponse, CustomerDirectoryItem, Customer)
 
 router = APIRouter(
     prefix="/api/v1/customers",
@@ -15,6 +14,12 @@ router = APIRouter(
 @router.get("", response_model=list[CustomerResponse])
 async def get_customers():
     return await customer_service.get_all_customers()
+
+
+@router.get("/directory", response_model=list[CustomerDirectoryItem])
+async def get_customer_directory(
+    current_customer: Customer = Depends(get_current_customer)):
+    return await people_service.get_people()
 
 
 @router.get("/{customer_id}", response_model=CustomerResponse)

@@ -15,14 +15,13 @@ from app.services.account_service import AccountService
 from app.services.auth_service import AuthService
 from app.services.customer_service import CustomerService
 from app.services.transaction_service import TransactionService
-
 from app.security import decode_access_token
-
+from app.services.people_service import PeopleService
 
 customer_repository = CustomerRepository()
 account_repository = AccountRepository()
 transaction_repository = TransactionRepository()
-
+people_service = PeopleService(customer_repository, account_repository)
 
 customer_service = CustomerService(
     customer_repository

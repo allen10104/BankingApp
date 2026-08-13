@@ -34,12 +34,8 @@ function DashboardSidebar({
         "/dashboard"
 
 
-    const isTransfer =
-        location.pathname ===
-        "/transactions"
-        &&
-        transactionType ===
-        "TRANSFER"
+    const isPeople =
+        location.pathname === "/people"
 
 
     const isTransactions =
@@ -86,22 +82,19 @@ function DashboardSidebar({
                         Dashboard
                     </Link>
 
-
                     <Link
-                        to="/transactions?type=TRANSFER"
+                        to="/people"
                         className={
                             `dashboard-nav-link ${
-                                isTransfer
+                                isPeople
                                     ? "active"
                                     : ""
                             }`
                         }
                     >
-                        <span>⇄</span>
-
-                        Transfer
+                        <span>⌕</span>
+                        Search People
                     </Link>
-
 
                     <Link
                         to="/transactions"

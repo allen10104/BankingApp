@@ -1,0 +1,219 @@
+.person-card {
+    padding: 23px;
+
+    border:
+        1px solid #ececef;
+
+    border-radius: 8px;
+
+    background: white;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.person-card:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(44, 35, 66, 0.07);
+}
+
+
+.person-card-header {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.person-avatar {
+    min-width: 48px;
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #cbb9f4;
+
+    color: #29252f;
+
+    font-size: 16px;
+    font-weight: 800;
+}
+
+
+.person-identity {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.person-name-row {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.person-name-row h3 {
+    margin: 0;
+
+    color: #202026;
+
+    font-size: 16px;
+}
+
+
+.person-identity > span {
+    margin-top: 4px;
+
+    color: #85858d;
+
+    font-size: 12px;
+}
+
+
+.person-you-badge {
+    padding: 3px 7px;
+
+    border-radius: 20px;
+
+    background: #eee8fb;
+
+    color: #7454ad;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+}
+
+
+.person-divider {
+    height: 1px;
+
+    margin: 19px 0;
+
+    background: #eeeeef;
+}
+
+
+.person-accounts-heading {
+    margin-bottom: 13px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.person-accounts-heading > span {
+    color: #8a6dc6;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+}
+
+
+.person-accounts-heading strong {
+    color: #888891;
+
+    font-size: 11px;
+}
+
+
+.person-account-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+
+.person-account {
+    padding: 11px 12px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    border-radius: 6px;
+
+    background: #fafafb;
+}
+
+
+.person-account-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f0ebff;
+
+    color: #7454ad;
+}
+
+
+.person-account-icon.savings {
+    background: #fff0e9;
+
+    color: #aa6247;
+}
+
+
+.person-account > div:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.person-account strong {
+    color: #35353c;
+
+    font-size: 11px;
+}
+
+
+.person-account span {
+    margin-top: 3px;
+
+    color: #8b8b93;
+
+    font-size: 10px;
+}
+
+
+.person-no-accounts {
+    padding: 18px;
+
+    border-radius: 6px;
+
+    background: #fafafb;
+
+    color: #9999a1;
+
+    font-size: 11px;
+
+    text-align: center;
+}

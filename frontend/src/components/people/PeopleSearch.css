@@ -1,0 +1,85 @@
+.people-search {
+    position: relative;
+
+    margin-bottom: 26px;
+}
+
+
+.people-search input {
+    width: 100%;
+
+    padding:
+        15px 50px
+        15px 46px;
+
+    border:
+        1px solid #dddddf;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #202026;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.people-search input:focus {
+    border-color: #a993de;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(169, 147, 222, 0.15);
+}
+
+
+.people-search input::placeholder {
+    color: #9999a1;
+}
+
+
+.people-search-icon {
+    position: absolute;
+
+    top: 50%;
+    left: 17px;
+
+    transform:
+        translateY(-50%);
+
+    color: #777780;
+
+    font-size: 20px;
+}
+
+
+.people-search button {
+    position: absolute;
+
+    top: 50%;
+    right: 15px;
+
+    transform:
+        translateY(-50%);
+
+    width: 28px;
+    height: 28px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f0ebff;
+
+    color: #6d53a9;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}

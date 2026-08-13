@@ -32,3 +32,16 @@ class Customer(Document):
 
     class Settings:
         name = "users"
+
+
+class DirectoryAccount(BaseModel):
+    account_id: str
+    account_type: str
+    last_four: str
+
+
+class CustomerDirectoryItem(BaseModel):
+    id: str
+    name: str
+    username: str
+    accounts: list[DirectoryAccount]

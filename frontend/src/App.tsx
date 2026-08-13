@@ -8,7 +8,7 @@ import AccountsPage from "./pages/AccountsPage"
 import ProtectedRoute from "./components/ProtectedRoute"
 import OpenAccountPage from "./pages/OpenAccountPage"
 import TransactionsPage from "./pages/TransactionsPage"
-
+import SearchPeoplePage from "./pages/SearchPeoplePage"
 
 function App() {
     return (
@@ -61,6 +61,17 @@ function App() {
                 element={
                     <ProtectedRoute>
                         <TransactionsPage />
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/people"
+                element={
+                    <ProtectedRoute>
+
+                        <SearchPeoplePage />
+
                     </ProtectedRoute>
                 }
             />
