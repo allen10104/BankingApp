@@ -1,0 +1,202 @@
+.transaction-history-panel {
+    padding: 25px;
+
+    border:
+        1px solid #ececef;
+
+    border-radius: 7px;
+
+    background: white;
+}
+
+
+.transaction-history-header {
+    margin-bottom: 20px;
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: flex-start;
+}
+
+
+.transaction-history-header h2 {
+    margin: 0;
+
+    font-size: 20px;
+}
+
+
+.transaction-history-header p {
+    margin: 5px 0 0;
+
+    color: #85858d;
+
+    font-size: 12px;
+}
+
+
+.transaction-history-header > span {
+    color: #85858d;
+
+    font-size: 12px;
+}
+
+
+.transaction-history-row {
+    padding: 16px 0;
+
+    display: grid;
+
+    grid-template-columns:
+        45px
+        minmax(150px, 1fr)
+        100px
+        120px;
+
+    align-items: center;
+
+    gap: 13px;
+
+    border-bottom:
+        1px solid #eeeeef;
+}
+
+
+.transaction-history-row:last-child {
+    border-bottom: none;
+}
+
+
+.history-icon {
+    width: 39px;
+    height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+}
+
+
+.history-icon.positive {
+    background: #dff4ec;
+    color: #16815e;
+}
+
+
+.history-icon.negative {
+    background: #ffe7df;
+    color: #b84b33;
+}
+
+
+.history-icon.neutral {
+    background: #eee8fb;
+    color: #7454ad;
+}
+
+
+.history-details {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.history-details strong {
+    font-size: 13px;
+}
+
+
+.history-details span {
+    margin-top: 4px;
+
+    overflow: hidden;
+
+    color: #85858d;
+
+    font-size: 11px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.history-date {
+    color: #909098;
+
+    font-size: 11px;
+}
+
+
+.history-amount {
+    text-align: right;
+
+    font-size: 13px;
+}
+
+
+.history-amount.positive {
+    color: #16815e;
+}
+
+
+.history-amount.negative {
+    color: #b84b33;
+}
+
+
+.history-amount.neutral {
+    color: #202026;
+}
+
+
+.transaction-history-empty {
+    padding: 55px 20px;
+
+    text-align: center;
+}
+
+
+.transaction-history-empty > div {
+    width: 47px;
+    height: 47px;
+
+    margin: 0 auto 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eee8fb;
+}
+
+
+.transaction-history-empty p {
+    color: #85858d;
+
+    font-size: 12px;
+}
+
+
+@media (max-width: 700px) {
+
+    .transaction-history-row {
+        grid-template-columns:
+            45px
+            minmax(120px, 1fr)
+            auto;
+    }
+
+
+    .history-date {
+        display: none;
+    }
+}

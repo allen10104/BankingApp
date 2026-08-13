@@ -8,6 +8,32 @@ import {
 } from "./api"
 
 
+interface AccountResponse {
+    _id?: string
+    id?: string
+    customer_id: string
+    account_number: string
+    account_type: "CHECKING" | "SAVINGS"
+    branch_id: number
+    balance: number
+}
+
+
+function normalizeAccount(
+    account: AccountResponse
+): Account {
+
+    return {
+        id: account.id ?? account._id ?? "",
+        customer_id: account.customer_id,
+        account_number: account.account_number,
+        account_type: account.account_type,
+        branch_id: account.branch_id,
+        balance: account.balance
+    }
+}
+
+
 export async function fetchAccounts():
 Promise<Account[]> {
 
@@ -25,7 +51,13 @@ Promise<Account[]> {
     }
 
 
-    return await response.json()
+    const data: AccountResponse[] =
+        await response.json()
+
+
+    return data.map(
+        normalizeAccount
+    )
 }
 
 
@@ -63,7 +95,9 @@ export async function createAccount(
                 await response.json()
 
 
-            if (errorData.detail) {
+            if (
+                typeof errorData.detail === "string"
+            ) {
 
                 message =
                     errorData.detail
@@ -78,5 +112,11 @@ export async function createAccount(
     }
 
 
-    return await response.json()
+    const data: AccountResponse =
+        await response.json()
+
+
+    return normalizeAccount(
+        data
+    )
 }

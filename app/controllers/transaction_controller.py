@@ -1,12 +1,18 @@
 from datetime import date
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException
 from starlette import status
 
-from app.dependencies import transaction_service
+from app.dependencies import (
+    transaction_service,
+    get_current_customer
+)
+
+from app.models.customer import Customer
+
 from app.models.transaction import (
     Transaction,
-    TransferCreate
+    TransactionCreate
 )
 
 
@@ -17,37 +23,64 @@ router = APIRouter(
 
 
 @router.post(
-    "/transfer",
+    "",
     response_model=Transaction,
-    status_code=status.HTTP_200_OK
+    status_code=status.HTTP_201_CREATED
 )
-async def transfer_money(transfer_data: TransferCreate):
+async def create_transaction(
+    transaction_data: TransactionCreate,
+    current_customer: Customer = Depends(
+        get_current_customer
+    )
+):
 
-    result = await transaction_service.transfer(transfer_data)
+    result = await transaction_service.create_transaction(
+        current_customer.id,
+        transaction_data
+    )
+
 
     if isinstance(result, str):
-
         if result == "Account not found":
+
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail=result
             )
+
+
+        if (
+            result == "You can only deposit into your own accounts"
+            or result == "You can only withdraw from your own accounts"
+            or result == "You can only transfer between your own accounts"
+        ):
+
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail=result
+            )
+
 
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=result
         )
 
+
     return result
 
 
-@router.get("", response_model=list[Transaction])
+@router.get("", response_model=list[Transaction], status_code=status.HTTP_200_OK)
 async def get_transactions(
     start_date: date | None = None,
-    transaction_type: str | None = Query(
-        default=None,
-        alias="type"
+    transaction_type: str | None = None,
+    current_customer: Customer = Depends(
+        get_current_customer
     )
 ):
 
-    return await transaction_service.get_transactions(start_date, transaction_type)
+    return await transaction_service.get_transactions(
+        current_customer.id,
+        start_date,
+        transaction_type
+    )

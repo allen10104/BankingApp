@@ -1,0 +1,122 @@
+.transaction-actions {
+    margin-bottom: 24px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 17px;
+}
+
+
+.transaction-action-card {
+    min-height: 140px;
+
+    padding: 21px;
+
+    display: grid;
+
+    grid-template-columns:
+        44px 1fr auto;
+
+    align-items: center;
+
+    gap: 14px;
+
+    border: 2px solid transparent;
+    border-radius: 7px;
+
+    color: #202026;
+
+    font: inherit;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.transaction-action-card.deposit {
+    background: #e8f2f7;
+}
+
+
+.transaction-action-card.withdraw {
+    background: #fff0e9;
+}
+
+
+.transaction-action-card.transfer {
+    background: #f0ebff;
+}
+
+
+.transaction-action-card:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0, 0, 0, 0.06);
+}
+
+
+.transaction-action-card.selected {
+    border-color: #8062bd;
+}
+
+
+.transaction-action-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: white;
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+
+.transaction-action-content h3 {
+    margin: 0;
+
+    font-size: 16px;
+}
+
+
+.transaction-action-content p {
+    margin: 5px 0 0;
+
+    color: #74747d;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+.transaction-action-arrow {
+    color: #76767f;
+
+    font-size: 17px;
+}
+
+
+@media (max-width: 850px) {
+
+    .transaction-actions {
+        grid-template-columns: 1fr;
+    }
+}

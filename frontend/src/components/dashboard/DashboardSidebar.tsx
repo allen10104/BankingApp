@@ -15,7 +15,18 @@ function DashboardSidebar({
     onLogout
 }: DashboardSidebarProps) {
 
-    const location = useLocation()
+    const location =
+        useLocation()
+
+
+    const params =
+        new URLSearchParams(
+            location.search
+        )
+
+
+    const transactionType =
+        params.get("type")
 
 
     const isDashboard =
@@ -23,9 +34,26 @@ function DashboardSidebar({
         "/dashboard"
 
 
-    const isAccounts =
+    const isTransfer =
         location.pathname ===
-        "/accounts"
+        "/transactions"
+        &&
+        transactionType ===
+        "TRANSFER"
+
+
+    const isTransactions =
+        location.pathname ===
+        "/transactions"
+        &&
+        transactionType !==
+        "TRANSFER"
+
+
+    const isAccounts =
+        location.pathname.startsWith(
+            "/accounts"
+        )
 
 
     return (
@@ -47,46 +75,46 @@ function DashboardSidebar({
                         to="/dashboard"
                         className={
                             `dashboard-nav-link ${
-                                isDashboard &&
-                                !location.hash
+                                isDashboard
                                     ? "active"
                                     : ""
                             }`
                         }
                     >
                         <span>⌂</span>
+
                         Dashboard
                     </Link>
 
 
                     <Link
-                        to="/dashboard#transfer"
+                        to="/transactions?type=TRANSFER"
                         className={
                             `dashboard-nav-link ${
-                                location.hash ===
-                                "#transfer"
+                                isTransfer
                                     ? "active"
                                     : ""
                             }`
                         }
                     >
                         <span>⇄</span>
+
                         Transfer
                     </Link>
 
 
                     <Link
-                        to="/dashboard#transactions"
+                        to="/transactions"
                         className={
                             `dashboard-nav-link ${
-                                location.hash ===
-                                "#transactions"
+                                isTransactions
                                     ? "active"
                                     : ""
                             }`
                         }
                     >
                         <span>≡</span>
+
                         Transactions
                     </Link>
 
@@ -102,6 +130,7 @@ function DashboardSidebar({
                         }
                     >
                         <span>▣</span>
+
                         Accounts
                     </Link>
 
@@ -115,6 +144,7 @@ function DashboardSidebar({
                 onClick={onLogout}
             >
                 <span>↪</span>
+
                 Log Out
             </button>
 

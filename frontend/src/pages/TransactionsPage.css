@@ -1,0 +1,31 @@
+.transactions-page-header {
+    margin-bottom: 28px;
+}
+
+
+.transactions-page-header > span {
+    color: #8062bd;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.transactions-page-header h1 {
+    margin: 7px 0 5px;
+
+    color: #202026;
+
+    font-size: 30px;
+}
+
+
+.transactions-page-header p {
+    margin: 0;
+
+    color: #81818a;
+
+    font-size: 13px;
+}

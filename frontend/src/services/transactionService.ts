@@ -1,6 +1,106 @@
-import type { Transaction } from "../types/transaction"
+import type {
+    Transaction,
+    TransactionCreate
+} from "../types/transaction"
 
-import { authenticatedFetch } from "./api"
+import {
+    authenticatedFetch
+} from "./api"
+
+
+export async function fetchTransactions():
+Promise<Transaction[]> {
+
+    const response =
+        await authenticatedFetch(
+            "/transactions"
+        )
+
+
+    if (!response.ok) {
+        throw new Error("Failed to load transactions")
+    }
+
+
+    return await response.json()
+}
+
+
+export async function createTransaction(
+    transactionData: TransactionCreate
+): Promise<Transaction> {
+
+    const response = await authenticatedFetch(
+        "/transactions",
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(
+                transactionData
+            )
+        }
+    )
+
+
+    if (!response.ok) {
+
+        const errorData = await response.json()
+
+        let message = "Transaction failed"
+
+
+        if (typeof errorData.detail === "string") {
+
+            message = errorData.detail
+
+        } else if (
+            Array.isArray(errorData.detail)
+            &&
+            errorData.detail.length > 0
+        ) {
+
+            message =
+                errorData.detail[0].msg
+
+        }
+
+
+        throw new Error(message)
+    }
+
+
+    return await response.json()
+}
+
+
+export async function createDeposit(
+    accountId: string,
+    amount: number
+) {
+
+    return createTransaction({
+        transaction_type: "DEPOSIT",
+        account_id: accountId,
+        amount: amount
+    })
+}
+
+
+export async function createWithdrawal(
+    accountId: string,
+    amount: number
+) {
+
+    return createTransaction({
+        transaction_type: "WITHDRAW",
+        account_id: accountId,
+        amount: amount
+    })
+}
 
 
 export interface TransferRequest {
@@ -10,49 +110,20 @@ export interface TransferRequest {
 }
 
 
-export async function fetchTransactions():
-Promise<Transaction[]> {
-
-    const response = await authenticatedFetch(
-        "/transactions"
-    )
-
-    if (!response.ok) {
-        throw new Error(
-            "Failed to load transactions"
-        )
-    }
-
-    return await response.json()
-}
-
-
 export async function createTransfer(
     transferData: TransferRequest
-): Promise<Transaction> {
+) {
 
-    const response = await authenticatedFetch(
-        "/transactions/transfer",
-        {
-            method: "POST",
+    return createTransaction({
+        transaction_type: "TRANSFER",
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+        from_account_id:
+            transferData.from_account_id,
 
-            body: JSON.stringify(transferData)
-        }
-    )
+        to_account_id:
+            transferData.to_account_id,
 
-    if (!response.ok) {
-
-        const errorData = await response.json()
-
-        throw new Error(
-            errorData.detail ??
-            "Transfer failed"
-        )
-    }
-
-    return await response.json()
+        amount:
+            transferData.amount
+    })
 }

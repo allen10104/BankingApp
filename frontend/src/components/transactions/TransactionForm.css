@@ -1,0 +1,221 @@
+.transaction-form-panel {
+    margin-bottom: 24px;
+
+    padding: 27px;
+
+    border:
+        1px solid #ececef;
+
+    border-radius: 7px;
+
+    background: white;
+}
+
+
+.transaction-form-heading {
+    margin-bottom: 25px;
+}
+
+
+.transaction-form-heading > span {
+    color: #8062bd;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+
+.transaction-form-heading h2 {
+    margin: 7px 0 5px;
+
+    font-size: 20px;
+}
+
+
+.transaction-form-heading p {
+    margin: 0;
+
+    color: #81818a;
+
+    font-size: 12px;
+}
+
+
+.transaction-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+.transaction-form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.transaction-form-field label {
+    margin-bottom: 7px;
+
+    color: #484850;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+.transaction-form-field select,
+.transaction-form-field input {
+    width: 100%;
+
+    padding: 12px;
+
+    border:
+        1px solid #dcdce0;
+
+    border-radius: 6px;
+
+    outline: none;
+
+    background: white;
+
+    font-size: 13px;
+}
+
+
+.transaction-form-field select:focus,
+.transaction-form-field input:focus {
+    border-color: #a993de;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(169, 147, 222, 0.15);
+}
+
+
+.transfer-account-fields {
+    display: grid;
+
+    grid-template-columns:
+        1fr auto 1fr;
+
+    gap: 14px;
+
+    align-items: end;
+}
+
+
+.transaction-transfer-arrow {
+    padding-bottom: 13px;
+
+    color: #85858d;
+}
+
+
+.transaction-amount-input {
+    position: relative;
+}
+
+
+.transaction-amount-input > span {
+    position: absolute;
+
+    top: 50%;
+    left: 13px;
+
+    transform:
+        translateY(-50%);
+
+    color: #74747d;
+}
+
+
+.transaction-amount-input input {
+    padding-left: 27px;
+}
+
+
+.transaction-submit-button {
+    padding: 13px;
+
+    border: none;
+    border-radius: 6px;
+
+    color: #202026;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+
+.transaction-submit-button.deposit {
+    background: #bee5d8;
+}
+
+
+.transaction-submit-button.withdraw {
+    background: #ffc8b5;
+}
+
+
+.transaction-submit-button.transfer {
+    background: #cbb9f4;
+}
+
+
+.transaction-submit-button:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+.transaction-form-error,
+.transaction-form-success {
+    margin: 0;
+
+    font-size: 12px;
+}
+
+
+.transaction-form-error {
+    color: #b83e3e;
+}
+
+
+.transaction-form-success {
+    color: #16815e;
+}
+
+
+.transaction-form-empty {
+    padding: 35px;
+
+    text-align: center;
+
+    color: #777780;
+}
+
+
+.transaction-form-empty p {
+    margin-bottom: 0;
+
+    font-size: 12px;
+}
+
+
+@media (max-width: 650px) {
+
+    .transfer-account-fields {
+        grid-template-columns: 1fr;
+    }
+
+
+    .transaction-transfer-arrow {
+        display: none;
+    }
+}

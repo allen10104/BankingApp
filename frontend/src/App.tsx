@@ -7,6 +7,8 @@ import LoginPage from "./pages/LoginPage"
 import AccountsPage from "./pages/AccountsPage"
 import ProtectedRoute from "./components/ProtectedRoute"
 import OpenAccountPage from "./pages/OpenAccountPage"
+import TransactionsPage from "./pages/TransactionsPage"
+
 
 function App() {
     return (
@@ -54,6 +56,14 @@ function App() {
                 }
             />
 
+            <Route
+                path="/transactions"
+                element={
+                    <ProtectedRoute>
+                        <TransactionsPage />
+                    </ProtectedRoute>
+                }
+            />
         </Routes>
     )
 }
