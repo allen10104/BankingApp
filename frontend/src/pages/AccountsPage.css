@@ -1,0 +1,79 @@
+.accounts-page-header {
+    margin-bottom: 28px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+
+.accounts-page-header
+> div > span {
+    color: #8062bd;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.accounts-page-header h1 {
+    margin: 7px 0 5px;
+
+    color: #202026;
+
+    font-size: 30px;
+}
+
+
+.accounts-page-header p {
+    margin: 0;
+
+    color: #81818a;
+
+    font-size: 13px;
+}
+
+
+.open-account-link {
+    padding: 12px 18px;
+
+    border-radius: 6px;
+
+    background: #202026;
+    color: white;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.15s ease,
+        transform 0.1s ease;
+}
+
+
+.open-account-link:hover {
+    background: #34343c;
+}
+
+
+.open-account-link:active {
+    transform:
+        translateY(1px);
+}
+
+
+@media (max-width: 650px) {
+
+    .accounts-page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

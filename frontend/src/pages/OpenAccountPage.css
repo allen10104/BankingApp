@@ -1,0 +1,72 @@
+.open-account-page-header {
+    margin-bottom: 35px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 30px;
+}
+
+
+.open-account-page-header
+> div > span {
+    color: #8062bd;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.open-account-page-header h1 {
+    margin: 7px 0 5px;
+
+    color: #202026;
+
+    font-size: 30px;
+}
+
+
+.open-account-page-header p {
+    margin: 0;
+
+    color: #81818a;
+
+    font-size: 13px;
+}
+
+
+.back-to-accounts {
+    color: #6f55a7;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.back-to-accounts:hover {
+    text-decoration: underline;
+}
+
+
+.open-account-page-content {
+    width: min(
+        600px,
+        100%
+    );
+
+    margin: 30px auto 0;
+}
+
+
+@media (max-width: 650px) {
+
+    .open-account-page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

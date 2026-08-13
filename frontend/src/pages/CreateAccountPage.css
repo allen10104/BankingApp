@@ -1,0 +1,488 @@
+.create-background {
+    min-height: 100vh;
+    padding: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eee7ff,
+            #d9cdf9
+        );
+}
+
+
+.create-shell {
+    width: min(1100px, 100%);
+    min-height: 690px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 0.9fr)
+        minmax(420px, 1fr);
+
+    overflow: hidden;
+
+    border-radius: 26px;
+
+    background: white;
+
+    box-shadow:
+        0 30px 80px
+        rgba(57, 39, 95, 0.14);
+}
+
+
+/* ---------------- BRAND SIDE ---------------- */
+
+
+.create-brand-panel {
+    padding: 42px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #202026;
+    color: white;
+}
+
+
+.create-logo {
+    color: white;
+
+    font-size: 24px;
+    font-weight: 800;
+
+    text-decoration: none;
+}
+
+
+.create-brand-content {
+    margin-top: 65px;
+}
+
+
+.create-eyebrow {
+    color: #cbb9f4;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+
+.create-eyebrow.dark {
+    color: #8062bd;
+}
+
+
+.create-brand-content h1 {
+    margin: 15px 0 20px;
+
+    font-size: 42px;
+
+    line-height: 1.07;
+
+    letter-spacing: -1.5px;
+}
+
+
+.create-brand-content p {
+    max-width: 390px;
+
+    color: #b8b8c0;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* ---------------- FEATURES ---------------- */
+
+
+.create-feature-list {
+    margin-top: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+
+.create-feature {
+    padding: 14px;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+}
+
+
+.create-feature-icon {
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #cbb9f4;
+    color: #29252f;
+
+    font-weight: 800;
+}
+
+
+.create-feature-icon.peach {
+    background: #ffc3aa;
+}
+
+
+.create-feature-icon.blue {
+    background: #bee5f7;
+}
+
+
+.create-feature div:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.create-feature strong {
+    font-size: 12px;
+}
+
+
+.create-feature span {
+    margin-top: 3px;
+
+    color: #aaaab3;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+/* ---------------- FORM SIDE ---------------- */
+
+
+.create-form-panel {
+    padding: 55px 70px;
+
+    display: flex;
+    align-items: center;
+
+    background: white;
+}
+
+
+.create-form-container {
+    width: 100%;
+
+    max-width: 430px;
+
+    margin: 0 auto;
+}
+
+
+.create-heading {
+    margin-bottom: 32px;
+}
+
+
+.create-heading h2 {
+    margin: 10px 0 9px;
+
+    color: #1f1f25;
+
+    font-size: 34px;
+
+    letter-spacing: -0.7px;
+}
+
+
+.create-heading p {
+    margin: 0;
+
+    color: #81818a;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* ---------------- FORM ---------------- */
+
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+.create-field {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.create-field label {
+    margin-bottom: 7px;
+
+    color: #393940;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.create-field input {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border:
+        1px solid
+        #d6d6da;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    background: white;
+
+    color: #232329;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.create-field input::placeholder {
+    color: #a7a7ae;
+}
+
+
+.create-field input:focus {
+    border-color: #a993de;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(169, 147, 222, 0.18);
+}
+
+
+/* ---------------- ERROR ---------------- */
+
+
+.create-error {
+    padding: 11px 13px;
+
+    border-radius: 6px;
+
+    background: #fff0f0;
+
+    color: #b93636;
+
+    font-size: 12px;
+}
+
+
+/* ---------------- SUBMIT ---------------- */
+
+
+.create-submit-button {
+    width: 100%;
+
+    margin-top: 6px;
+
+    padding: 14px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #202026;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        transform 0.1s ease;
+}
+
+
+.create-submit-button:hover:not(:disabled) {
+    background: #34343c;
+}
+
+
+.create-submit-button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+
+.create-submit-button:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* ---------------- BOTTOM LINKS ---------------- */
+
+
+.create-login {
+    margin-top: 25px;
+
+    padding-top: 23px;
+
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+
+    border-top: 1px solid #eeeeef;
+
+    color: #7b7b84;
+
+    font-size: 13px;
+}
+
+
+.create-login a {
+    color: #7255b2;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.create-login a:hover {
+    text-decoration: underline;
+}
+
+
+.create-home-link {
+    margin-top: 22px;
+
+    display: block;
+
+    color: #8a8a92;
+
+    font-size: 12px;
+
+    text-align: center;
+
+    text-decoration: none;
+}
+
+
+.create-home-link:hover {
+    color: #34343c;
+}
+
+
+/* ---------------- RESPONSIVE ---------------- */
+
+
+@media (max-width: 850px) {
+
+    .create-background {
+        padding: 0;
+    }
+
+
+    .create-shell {
+        min-height: 100vh;
+
+        grid-template-columns: 1fr;
+
+        border-radius: 0;
+    }
+
+
+    .create-brand-panel {
+        padding: 30px 35px;
+    }
+
+
+    .create-brand-content {
+        margin-top: 45px;
+    }
+
+
+    .create-brand-content h1 {
+        font-size: 35px;
+    }
+
+
+    .create-feature-list {
+        display: none;
+    }
+
+
+    .create-form-panel {
+        padding: 55px 35px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .create-brand-panel {
+        padding: 25px;
+    }
+
+
+    .create-brand-content {
+        margin-top: 35px;
+    }
+
+
+    .create-brand-content h1 {
+        font-size: 31px;
+    }
+
+
+    .create-form-panel {
+        padding: 45px 24px;
+    }
+
+
+    .create-heading h2 {
+        font-size: 30px;
+    }
+
+}

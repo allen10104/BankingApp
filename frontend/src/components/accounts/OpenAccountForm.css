@@ -1,0 +1,142 @@
+.open-account-panel {
+    padding: 25px;
+
+    border:
+        1px solid
+        #ececef;
+
+    border-radius: 7px;
+
+    background: #202026;
+    color: white;
+}
+
+
+.open-account-heading > span {
+    color: #cbb9f4;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+
+.open-account-heading h2 {
+    margin: 9px 0;
+
+    font-size: 21px;
+}
+
+
+.open-account-heading p {
+    margin: 0;
+
+    color: #aaaab2;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+.open-account-form {
+    margin-top: 28px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 17px;
+}
+
+
+.open-account-field {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.open-account-field label {
+    margin-bottom: 6px;
+
+    color: #c9c9cf;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+.open-account-field select,
+.open-account-field input {
+    padding: 12px;
+
+    border:
+        1px solid
+        #4a4a52;
+
+    border-radius: 5px;
+
+    outline: none;
+
+    background: #2c2c33;
+    color: white;
+
+    font-size: 13px;
+}
+
+
+.open-account-field input::placeholder {
+    color: #82828a;
+}
+
+
+.open-account-field select:focus,
+.open-account-field input:focus {
+    border-color: #cbb9f4;
+}
+
+
+.open-account-button {
+    margin-top: 5px;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #cbb9f4;
+    color: #202026;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+
+.open-account-button:hover:not(:disabled) {
+    background: #d7c9f6;
+}
+
+
+.open-account-button:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+.open-account-error,
+.open-account-success {
+    margin: 0;
+
+    font-size: 11px;
+}
+
+
+.open-account-error {
+    color: #ffaaaa;
+}
+
+
+.open-account-success {
+    color: #9be2c6;
+}

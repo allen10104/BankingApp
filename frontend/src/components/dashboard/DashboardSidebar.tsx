@@ -1,4 +1,10 @@
+import {
+    Link,
+    useLocation
+} from "react-router"
+
 import "./DashboardSidebar.css"
+
 
 interface DashboardSidebarProps {
     onLogout: () => void
@@ -9,52 +15,100 @@ function DashboardSidebar({
     onLogout
 }: DashboardSidebarProps) {
 
+    const location = useLocation()
+
+
+    const isDashboard =
+        location.pathname ===
+        "/dashboard"
+
+
+    const isAccounts =
+        location.pathname ===
+        "/accounts"
+
+
     return (
         <aside className="dashboard-sidebar">
 
             <div>
 
-                <h2 className="dashboard-logo">
+                <Link
+                    className="dashboard-logo"
+                    to="/dashboard"
+                >
                     The Bank
-                </h2>
+                </Link>
+
 
                 <nav className="dashboard-nav">
 
-                    <a
-                        href="#overview"
-                        className="dashboard-nav-link active"
+                    <Link
+                        to="/dashboard"
+                        className={
+                            `dashboard-nav-link ${
+                                isDashboard &&
+                                !location.hash
+                                    ? "active"
+                                    : ""
+                            }`
+                        }
                     >
                         <span>⌂</span>
                         Dashboard
-                    </a>
+                    </Link>
 
-                    <a
-                        href="#transfer"
-                        className="dashboard-nav-link"
+
+                    <Link
+                        to="/dashboard#transfer"
+                        className={
+                            `dashboard-nav-link ${
+                                location.hash ===
+                                "#transfer"
+                                    ? "active"
+                                    : ""
+                            }`
+                        }
                     >
                         <span>⇄</span>
                         Transfer
-                    </a>
+                    </Link>
 
-                    <a
-                        href="#transactions"
-                        className="dashboard-nav-link"
+
+                    <Link
+                        to="/dashboard#transactions"
+                        className={
+                            `dashboard-nav-link ${
+                                location.hash ===
+                                "#transactions"
+                                    ? "active"
+                                    : ""
+                            }`
+                        }
                     >
                         <span>≡</span>
                         Transactions
-                    </a>
+                    </Link>
 
-                    <a
-                        href="#accounts"
-                        className="dashboard-nav-link"
+
+                    <Link
+                        to="/accounts"
+                        className={
+                            `dashboard-nav-link ${
+                                isAccounts
+                                    ? "active"
+                                    : ""
+                            }`
+                        }
                     >
                         <span>▣</span>
                         Accounts
-                    </a>
+                    </Link>
 
                 </nav>
 
             </div>
+
 
             <button
                 className="dashboard-logout"

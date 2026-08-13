@@ -1,0 +1,186 @@
+.accounts-list-panel {
+    padding: 25px;
+
+    border:
+        1px solid
+        #ececef;
+
+    border-radius: 7px;
+
+    background: white;
+}
+
+
+.accounts-panel-heading {
+    margin-bottom: 22px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+.accounts-panel-heading h2 {
+    margin: 0;
+
+    color: #202026;
+
+    font-size: 20px;
+}
+
+
+.accounts-panel-heading p {
+    margin: 6px 0 0;
+
+    color: #85858d;
+
+    font-size: 12px;
+}
+
+
+.accounts-panel-heading > span {
+    color: #85858d;
+
+    font-size: 12px;
+}
+
+
+.accounts-card-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(260px, 1fr)
+        );
+
+    gap: 16px;
+}
+
+
+.full-account-card {
+    min-height: 220px;
+
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 8px;
+
+    background: #f0ebff;
+}
+
+
+.full-account-card.savings {
+    background: #fff0e9;
+}
+
+
+.full-account-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.full-account-type {
+    color: #29292f;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+
+.full-account-top p {
+    margin: 4px 0 0;
+
+    color: #777780;
+
+    font-size: 11px;
+}
+
+
+.account-menu {
+    color: #6f6f77;
+
+    letter-spacing: 2px;
+}
+
+
+.full-account-number {
+    margin-top: 32px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.full-account-number span,
+.full-account-balance span {
+    color: #777780;
+
+    font-size: 10px;
+}
+
+
+.full-account-number strong {
+    margin-top: 4px;
+
+    font-size: 14px;
+
+    letter-spacing: 1px;
+}
+
+
+.full-account-balance {
+    margin-top: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.full-account-balance strong {
+    margin-top: 4px;
+
+    color: #202026;
+
+    font-size: 27px;
+}
+
+
+.accounts-empty {
+    padding: 55px 20px;
+
+    text-align: center;
+}
+
+
+.accounts-empty-icon {
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eee9fb;
+
+    color: #6950a1;
+}
+
+
+.accounts-empty h3 {
+    margin: 0;
+}
+
+
+.accounts-empty p {
+    color: #85858d;
+
+    font-size: 12px;
+}
